@@ -1,7 +1,8 @@
 ﻿using System.Windows;
-using WPF_Prism_SimpleFEM_UIStructure.Views;
+using UI_Module_LaunchView;
+using UI_Shell.Views;
 
-namespace WPF_Prism_SimpleFEM_UIStructure
+namespace UI_Shell
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -15,6 +16,11 @@ namespace WPF_Prism_SimpleFEM_UIStructure
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+        }
+
+        protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+        {
+            moduleCatalog.AddModule<UI_Module_LaunchView_Module>();
         }
     }
 

@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="WPF_Prism_SimpleFEM_UIStructure/WPF_Prism_SimpleFEM_UIStructure.csproj" />
+  <Project Path="UI_Module_LaunchView/UI_Module_LaunchView.csproj" Id="ddf7964d-dcbb-42b1-9474-8594320fa5a1" />
+  <Project Path="UI_SharedResources/UI_SharedResources.csproj" Id="70a7f917-300a-4e09-ba69-12e97f1a4a2f" />
+  <Project Path="WPF_Prism_SimpleFEM_UIStructure/UI_Shell.csproj" />
 </Solution>

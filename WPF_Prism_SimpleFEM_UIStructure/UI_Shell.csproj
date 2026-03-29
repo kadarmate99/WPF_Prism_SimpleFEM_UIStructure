@@ -17,4 +17,9 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UI_Module_LaunchView\UI_Module_LaunchView.csproj" />
+    <ProjectReference Include="..\UI_SharedResources\UI_SharedResources.csproj" />
+  </ItemGroup>
+
 </Project>
