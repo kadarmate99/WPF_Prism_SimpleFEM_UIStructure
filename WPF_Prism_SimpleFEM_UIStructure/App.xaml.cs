@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using UI_Module_LaunchView;
+using UI_Module_Workspace;
 using UI_Shell.Views;
 
 namespace UI_Shell
@@ -21,6 +22,7 @@ namespace UI_Shell
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<UI_Module_LaunchView_Module>();
+            moduleCatalog.AddModule<UI_Module_Workspace_Module>();
         }
     }
 

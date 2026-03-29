@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="UI_Module_Workspace.Views.WorkspaceContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI_Module_Workspace.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UI_SharedResources;component/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Menu -->
+            <RowDefinition Height="*"/>
+            <!-- Tabs -->
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0"
+          Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+            <MenuItem Header="_File" Padding="8,-6">
+                <MenuItem Header="_New" Command="{Binding NewModelCommand}" />
+                <MenuItem Header="_Open..." Command="{Binding OpenModelCommand}" />
+                <MenuItem Header="Save _As..." Command="{Binding SaveAsCommand}" />
+                <MenuItem Header="_Close"    Command="{Binding CloseActiveCommand}"/>
+                <Separator/>
+                <MenuItem Header="_Exit"/>
+            </MenuItem>
+            <MenuItem Header="_Edit" Padding="8,-6">
+                <MenuItem Header="_Undo"
+                      Command="{Binding ActiveWorkspace.ViewModel.UndoCommand}"
+                      InputGestureText="Ctrl+Z">
+                    <MenuItem.Icon>
+                        <TextBlock Text="↶" FontSize="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Redo"
+                      Command="{Binding ActiveWorkspace.ViewModel.RedoCommand}"
+                      InputGestureText="Ctrl+Y">
+                    <MenuItem.Icon>
+                        <TextBlock Text="↷" FontSize="16"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!-- One tab per open workspace -->
+        <TabControl Grid.Row="1"
+                ItemsSource="{Binding OpenWorkspaces}"
+                SelectedItem="{Binding ActiveWorkspace, Mode=TwoWay}">
+
+            <TabControl.ItemTemplate>
+                <!-- Tab header: filename -->
+                <DataTemplate DataType="{x:Type mw:IModelWorkspace}">
+                    <TextBlock Text="{Binding Title}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <!-- Tab body: canvas for that workspace -->
+                <DataTemplate DataType="{x:Type mw:IModelWorkspace}">
+                    <local:CanvasView DataContext="{Binding ViewModel}"/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+
+        </TabControl>
+
+    </Grid>
+</UserControl>
